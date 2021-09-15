@@ -1,11 +1,22 @@
 require "dxruby"
+require_relative 'Player.rb'
+require_relative 'Enemy.rb'
 
 player_img = Image.load('image/player.png')
 x = 100
 y = 100
-player = Sprite.new(x, y, player_img)
+player = Player.new(x, y, player_img)
+
+enemy_img = Image.load('image/enemy.png')
+x = 300
+y = 300
+enemy = Enemy.new(x, y, enemy_img)
 
 Window.loop do
-  player.x += Input.x
-  player.y+=Input.y
+  player.update
+  player.draw
+
+  enemy.draw
+
+  Sprite.check(player,enemy)
 end
