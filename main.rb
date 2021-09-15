@@ -2,21 +2,31 @@ require "dxruby"
 require_relative 'Player.rb'
 require_relative 'Enemy.rb'
 
+font=Font.new(32)
 player_img = Image.load('image/player.png')
-x = 100
-y = 100
-player = Player.new(x, y, player_img)
-
 enemy_img = Image.load('image/enemy.png')
-x = 300
-y = 300
-enemy = Enemy.new(x, y, enemy_img)
+
+player = Player.new(100, 100, player_img)
+
+
+enemies=[]
+10.times do
+  enemies << Enemy.new(rand(0..(640 - 32 - 1)), rand((480 - 32 - 1)), enemy_img)
+end
+
+timer=600+60
 
 Window.loop do
-  player.update
+  if timer>=60
+    timer-=1
+    player.update
+  end
+
   player.draw
 
-  enemy.draw
+  Sprite.draw(enemies)
+  Window.draw_font(10,0,"スコア：#{player.score}",font)
+  Window.draw_font(10,32,"残り時間：#{timer/60}秒",font)
 
-  Sprite.check(player,enemy)
+  Sprite.check(player,enemies)
 end
