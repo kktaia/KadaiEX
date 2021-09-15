@@ -3,10 +3,12 @@ require 'dxruby'
 require_relative 'Player'
 require_relative 'Enemy'
 
+Window.caption="MyGame"
 font = Font.new(32)
 player_img = Image.load('image/player.png')
 enemy_img = Image.load('image/enemy.png')
-chip_img = Image.load_tiles('image/mapchip.png', 6, 2)
+chip_img = Image.load_tiles('image/mapchip.png', 8, 3)
+
 map = [
   [0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3],
   [2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5],
@@ -23,10 +25,10 @@ enemies = []
   enemies << Enemy.new(rand(0..(640 - 32 - 1)), rand((480 - 32 - 1)), enemy_img)
 end
 
-timer = 600 + 60
+timer = 6000 + 60
 
 Window.loop do
-  Window.draw_tile(0, 0, map, chip_img, 0, 0, 12, 4)
+  Window.draw_tile(0, 0, map, chip_img, 0, 0, 12, 12)
   if timer >= 60
     timer -= 1
     player.update
@@ -34,7 +36,7 @@ Window.loop do
 
   player.draw
 
-  #Sprite.draw(enemies)
+  Sprite.draw(enemies)
   Window.draw_font(10, 0, "スコア：#{player.score}", font)
   Window.draw_font(10, 32, "残り時間：#{timer / 60}秒", font)
 
