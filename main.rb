@@ -38,8 +38,8 @@ Window.loop do
   player.draw
 
   Sprite.draw(enemies)
-  Window.draw_font(10, 0, "スコア：#{player.score}", font)
-  Window.draw_font(10, 32, "残り時間：#{timer / 60}秒", font)
+  Window.draw_font(Window.ox + 10, Window.oy + 0, "スコア：#{player.score}", font)
+  Window.draw_font(Window.ox + 10, Window.oy + 32, "残り時間：#{timer / 60}秒", font)
 
   Sprite.check(player, enemies)
 end
