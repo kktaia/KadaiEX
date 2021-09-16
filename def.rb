@@ -10,4 +10,4 @@ class Sprite
     def height
       self.image.height
     end
-  end
+end

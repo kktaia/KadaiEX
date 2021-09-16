@@ -16,19 +16,21 @@ class Player < Sprite
     self.y += Input.y * 5
     self.x = (x < 0 ? 0 : limit - width) if x < 0 || x > limit - width
     self.y = (y < 0 ? 0 : limit - height) if y < 0 || y > limit - height
-    if x > Window.width / 2 && x < limit - Window.width / 2
-      Window.ox = x - Window.width / 2
-    elsif x <= Window.width / 2
+    
+    if x <= Window.width / 2
       Window.ox = 0
     elsif x >= limit - Window.width / 2
       Window.ox = limit - Window.width
+    else
+      Window.ox = x - Window.width / 2
     end
-    if y > Window.height / 2 && y < limit - Window.height / 2
-      Window.oy = y - Window.height / 2
-    elsif y <= Window.height / 2
+      
+    if y <= Window.height / 2
       Window.oy = 0
     elsif y >= limit - Window.height / 2
       Window.oy = limit - Window.height
+    else
+      Window.oy = y - Window.height / 2
     end
   end
 
