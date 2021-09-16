@@ -2,9 +2,8 @@
 require 'dxruby'
 require_relative 'Player'
 require_relative 'Enemy'
+require_relative "def"
 
-Window.caption = "MyGame"
-Window.bgcolor = C_WHITE
 font = Font.new(32)
 player_img = Image.load('image/player.png')
 enemy_img = Image.load('image/enemy.png')
@@ -25,13 +24,11 @@ map = [
   [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
 ]
 
-
 player = Player.new(100, 100, player_img)
-
 
 enemies = []
 10.times do
-  enemies << Enemy.new(rand(0..(640 - 32 - 1)), rand((480 - 32 - 1)), enemy_img)
+  enemies << Enemy.new(rand(9*80)+80, rand(9*80)+80, enemy_img)
 end
 
 timer = 6000 + 60

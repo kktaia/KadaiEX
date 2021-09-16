@@ -1,11 +1,4 @@
-class Sprite
-  def width
-    self.image.width
-  end
-  def height
-    self.image.height
-  end
-end
+require_relative "def"
 
 class Player < Sprite
   attr_accessor :score
@@ -13,8 +6,8 @@ class Player < Sprite
   def initialize(x, y, image)
     @score = 0
     super
-    #self.scale_x *= 1
-    #self.scale_y *= 1
+    self.scale_x *= (CELL_SIZE/width.to_f)
+    self.scale_y *= (CELL_SIZE/height.to_f)
   end
 
   def update
